@@ -1,3 +1,4 @@
+
 .grid-container {
     width: 500px;
     height: 500px;
@@ -10,5 +11,6 @@
 
 .grid-element {
     border: 1px blue solid;
-    /* background-color: red; */
+    box-sizing: border-box;
+
 }
