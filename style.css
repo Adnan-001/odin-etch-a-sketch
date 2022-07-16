@@ -2,9 +2,13 @@
     width: 500px;
     height: 500px;
 
-    background-color: whitesmoke;
+    background-color: wheat;
 
     display: flex;
     flex-wrap: wrap;
 }
 
+.grid-element {
+    border: 1px blue solid;
+    /* background-color: red; */
+}
