@@ -28,7 +28,21 @@ function makeGrid(gridSize) {
 
 }
 
+function addHoverToGrid() {
+    const allGridElements = document.querySelectorAll('.grid-element');
+
+    allGridElements.forEach(element =>{
+        element.addEventListener('mouseenter', (e) => {
+            e.target.style.backgroundColor = 'hotpink';
+        })
+    });
+        
+}
+
 const gridContainer = document.querySelector('.grid-container');
-const gridSize = 60;
+const gridSize = 30;
+
 
 makeGrid(gridSize);
+
+addHoverToGrid();
