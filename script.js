@@ -10,11 +10,11 @@ function calculateGridElementSize(gridSize) {
 
 function addElementToGrid(gridContainer, gridElementSize) {
     const gridElement = document.createElement('div');
-    // gridElement.style.height = gridElementSize;
+
     gridElement.setAttribute('style', `width: ${gridElementSize+'px'}`);
     gridElement.style.height = gridElementSize+'px';
 
-    gridElement.style.backgroundColor = 'blue';
+    // gridElement.style.backgroundColor = 'blue';
     
     gridContainer.appendChild(gridElement);
 }
@@ -22,8 +22,12 @@ function addElementToGrid(gridContainer, gridElementSize) {
 function makeGrid() {
     const gridElementSize = calculateGridElementSize(16);
 
-    addElementToGrid(gridContainer, gridElementSize);
+    for (let i = 0; i < 16*16; i++) {
+        addElementToGrid(gridContainer, gridElementSize);        
+    }
 
+        // addElementToGrid(gridContainer, gridElementSize);        
+        // addElementToGrid(gridContainer, gridElementSize);        
 
 
 }

@@ -2,5 +2,9 @@
     width: 500px;
     height: 500px;
 
-    background-color: burlywood;
+    background-color: whitesmoke;
+
+    display: flex;
+    flex-wrap: wrap;
 }
+
