@@ -5,7 +5,7 @@ function getDivDimensions(div) {
 
 function calculateGridElementSize(gridSize) {
     const gridContainerDimension = getDivDimensions(gridContainer);
-    return Math.floor(gridContainerDimension/gridSize);
+    return gridContainerDimension/gridSize;
 }
 
 function addElementToGrid(gridContainer, gridElementSize) {
@@ -14,24 +14,21 @@ function addElementToGrid(gridContainer, gridElementSize) {
     gridElement.setAttribute('style', `width: ${gridElementSize+'px'}`);
     gridElement.style.height = gridElementSize+'px';
 
-    // gridElement.style.backgroundColor = 'blue';
-    
+    gridElement.classList.add('grid-element');
     gridContainer.appendChild(gridElement);
 }
 
-function makeGrid() {
-    const gridElementSize = calculateGridElementSize(16);
+function makeGrid(gridSize) {
+    const gridElementSize = calculateGridElementSize(gridSize);
 
-    for (let i = 0; i < 16*16; i++) {
+    for (let i = 0; i < gridSize*gridSize; i++) {
         addElementToGrid(gridContainer, gridElementSize);        
     }
-
-        // addElementToGrid(gridContainer, gridElementSize);        
-        // addElementToGrid(gridContainer, gridElementSize);        
 
 
 }
 
 const gridContainer = document.querySelector('.grid-container');
+const gridSize = 60;
 
-makeGrid();
+makeGrid(gridSize);
