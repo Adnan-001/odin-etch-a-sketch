@@ -76,7 +76,7 @@ function generateRandomRGB() {
 }
 
 function addListenerToRainbowBtn() {
-    const rainbowModeBtn = document.querySelector('.change-grid #rainbowMode');
+    const rainbowModeBtn = document.querySelector('#rainbowMode');
     rainbowModeBtn.addEventListener('click', (e) => {
         console.log(rainbowModeBtn);
         gridContainer.classList.toggle('.rainbow-mode');
@@ -84,7 +84,7 @@ function addListenerToRainbowBtn() {
 }
 
 function addListenerToUserInputBtn() {
-    const inputBtn = document.querySelector('.change-grid #gridSize');
+    const inputBtn = document.querySelector('#gridSize');
     inputBtn.addEventListener('click', (e) => {
         gridSize = prompt("Enter Grid Size (upto 100): ", "16");
 

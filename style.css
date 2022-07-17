@@ -1,16 +1,20 @@
 
+body {
+    background-color: #ccc0ff;
+}
+
 .grid-container {
     width: 500px;
     height: 500px;
-
-    background-color: wheat;
+    background-color: #f5f3ff;
+    box-shadow: -8px 8px 16px #888888;
 
     display: flex;
     flex-wrap: wrap;
 }
 
 .grid-element {
-    border: 1px blue solid;
+    border: 1px #738880 solid;
     box-sizing: border-box;
 
 }
