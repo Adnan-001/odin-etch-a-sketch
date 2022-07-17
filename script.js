@@ -27,7 +27,6 @@ function isGridAlreadyExist() {
 }
 
 function removeGrid() {
-    const allGridElements = document.querySelectorAll('.grid-element');
 
     allGridElements.forEach(element => {
         gridContainer.removeChild(element);
@@ -76,32 +75,47 @@ function generateRandomRGB() {
 }
 
 const gridContainer = document.querySelector('.grid-container');
-
 let gridSize = 16;
 
-
-const inputBtn = document.querySelector('.change-grid #gridSize');
-inputBtn.addEventListener('click', (e) =>{
-    gridSize = prompt("Enter Grid Size (upto 100): ", "16");
-
-    if (isNaN(gridSize)) {
-        gridSize = 16;
-    }
-
-    if (parseInt(gridSize) > 100) {
-        gridSize = 16;
-    }
-
-    makeGrid(+gridSize);
-});
-
-const rainbowModeBtn = document.querySelector('.change-grid #rainbowMode');
-rainbowModeBtn.addEventListener('click', (e) => {
-    console.log(rainbowModeBtn);
-    gridContainer.classList.toggle('.rainbow-mode');
-});
-
-
-
+addListenerToUserInputBtn();
+addListenerToRainbowBtn();
+addListenerToClearBtn();
 
 makeGrid(gridSize);
+
+function addListenerToClearBtn() {
+    const clearBtn = document.querySelector('#clear-grid');
+    
+    clearBtn.onclick = function()
+    {
+        const allGridElements = document.querySelectorAll('.grid-element');
+        allGridElements.forEach(element => {
+            element.style.backgroundColor = 'transparent';
+        });
+    }
+}
+
+function addListenerToRainbowBtn() {
+    const rainbowModeBtn = document.querySelector('.change-grid #rainbowMode');
+    rainbowModeBtn.addEventListener('click', (e) => {
+        console.log(rainbowModeBtn);
+        gridContainer.classList.toggle('.rainbow-mode');
+    });
+}
+
+function addListenerToUserInputBtn() {
+    const inputBtn = document.querySelector('.change-grid #gridSize');
+    inputBtn.addEventListener('click', (e) => {
+        gridSize = prompt("Enter Grid Size (upto 100): ", "16");
+
+        if (isNaN(gridSize)) {
+            gridSize = 16;
+        }
+
+        if (parseInt(gridSize) > 100) {
+            gridSize = 16;
+        }
+
+        makeGrid(+gridSize);
+    });
+}
