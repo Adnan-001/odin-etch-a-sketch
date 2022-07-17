@@ -117,12 +117,26 @@ function addListenerToClearBtn() {
     }
 }
 
+function addListenerToGridLinesBtn() {
+    const toggleGridLineBtn = document.querySelector('#toggle-gridLines');
+
+    toggleGridLineBtn.onclick = function () {
+        const allGridElements = document.querySelectorAll('.grid-element');
+
+        allGridElements.forEach(element => {
+            element.classList.toggle('grid-element-border');
+        });
+    }
+}
 
 const gridContainer = document.querySelector('.grid-container');
 let gridSize = 16;
 
-addListenerToUserInputBtn();
 addListenerToRainbowBtn();
 addListenerToClearBtn();
+addListenerToGridLinesBtn();
+
+addListenerToUserInputBtn();
+
 
 makeGrid(gridSize);

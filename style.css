@@ -20,9 +20,11 @@ body {
 }
 
 .grid-element {
-    border: 1px #738880 solid;
     box-sizing: border-box;
+}
 
+.grid-element-border {
+    border: 1px #738880 solid;
 }
 
 .main-container {
