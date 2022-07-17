@@ -48,29 +48,47 @@ function makeGrid(gridSize) {
     addHoverToGrid();
 }
 
+function getAlphaValueForBackgroundColor(element) {
+    let elementColor = element.style.backgroundColor;
+
+    if (elementColor.charAt(3) !== 'a') {
+        return 1;
+    }
+
+    let elementColorArr = elementColor.split(',');
+    let alphaVal = elementColorArr[3];
+    alphaVal = alphaVal.substr(0, alphaVal.length-1);
+
+    return parseFloat(alphaVal);
+}
+
 function addHoverToGrid() {
     const allGridElements = document.querySelectorAll('.grid-element');
 
     allGridElements.forEach(element =>{
         element.addEventListener('mouseenter', (e) => {
-            if (gridContainer.classList.contains('.rainbow-mode')) {
-                e.target.style.backgroundColor = generateRandomRGB();
+            if (gridContainer.classList.contains('rainbow-mode')) {
+                e.target.style.backgroundColor = generateRandomRGB(.4);
                 return;
             }
 
+            if (gridContainer.classList.contains('color-shading')) {
+                let currentAlphaVal = getAlphaValueForBackgroundColor(e.target);
+                console.log(currentAlphaVal);
+            }
             e.target.style.backgroundColor = 'rgb(12,3,3)';
         })
     });
         
 }
 
-function generateRandomRGB() {
+function generateRandomRGB(alphaValForRGB = 1.0) {
     let r,g,b, colorVal;
 
     r = Math.floor(Math.random()*256);
     g = Math.floor(Math.random()*256);
     b = Math.floor(Math.random()*256);
-    colorVal =  `rgb(${r}, ${g}, ${b})`;
+    colorVal =  `rgba(${r}, ${g}, ${b}, ${alphaValForRGB})`;
 
     return colorVal;
 }
@@ -79,7 +97,7 @@ function addListenerToRainbowBtn() {
     const rainbowModeBtn = document.querySelector('#rainbowMode');
     rainbowModeBtn.addEventListener('click', (e) => {
         console.log(rainbowModeBtn);
-        gridContainer.classList.toggle('.rainbow-mode');
+        gridContainer.classList.toggle('rainbow-mode');
     });
 }
 
@@ -129,12 +147,21 @@ function addListenerToGridLinesBtn() {
     }
 }
 
+function addListenerToShadingBtn() {
+    const shaddingBtn = document.querySelector('#toggle-shading');
+
+    shaddingBtn.onclick = function () {
+        gridContainer.classList.toggle('color-shading');
+    }
+}
+
 const gridContainer = document.querySelector('.grid-container');
 let gridSize = 16;
 
 addListenerToRainbowBtn();
 addListenerToClearBtn();
 addListenerToGridLinesBtn();
+addListenerToShadingBtn();
 
 addListenerToUserInputBtn();
 
