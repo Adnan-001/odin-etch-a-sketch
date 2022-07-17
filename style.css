@@ -1,6 +1,10 @@
 
 body {
     background-color: #ccc0ff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .grid-container {
@@ -11,10 +15,26 @@ body {
 
     display: flex;
     flex-wrap: wrap;
+
+    flex-shrink: 0;
 }
 
 .grid-element {
     border: 1px #738880 solid;
     box-sizing: border-box;
 
+}
+
+.main-container {
+    display: flex;
+    gap: 64px;
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+
+    height: 500px;
 }
