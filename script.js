@@ -53,10 +53,26 @@ function addHoverToGrid() {
 
     allGridElements.forEach(element =>{
         element.addEventListener('mouseenter', (e) => {
-            e.target.style.backgroundColor = 'hotpink';
+            if (gridContainer.classList.contains('.rainbow-mode')) {
+                e.target.style.backgroundColor = generateRandomRGB();
+                return;
+            }
+
+            e.target.style.backgroundColor = 'rgb(12,3,3)';
         })
     });
         
+}
+
+function generateRandomRGB() {
+    let r,g,b, colorVal;
+
+    r = Math.floor(Math.random()*256);
+    g = Math.floor(Math.random()*256);
+    b = Math.floor(Math.random()*256);
+    colorVal =  `rgb(${r}, ${g}, ${b})`;
+
+    return colorVal;
 }
 
 const gridContainer = document.querySelector('.grid-container');
@@ -64,7 +80,7 @@ const gridContainer = document.querySelector('.grid-container');
 let gridSize = 16;
 
 
-const inputBtn = document.querySelector('.change-grid button');
+const inputBtn = document.querySelector('.change-grid #gridSize');
 inputBtn.addEventListener('click', (e) =>{
     gridSize = prompt("Enter Grid Size (upto 100): ", "16");
 
@@ -77,6 +93,12 @@ inputBtn.addEventListener('click', (e) =>{
     }
 
     makeGrid(+gridSize);
+});
+
+const rainbowModeBtn = document.querySelector('.change-grid #rainbowMode');
+rainbowModeBtn.addEventListener('click', (e) => {
+    console.log(rainbowModeBtn);
+    gridContainer.classList.toggle('.rainbow-mode');
 });
 
 
