@@ -11,7 +11,7 @@ body {
     width: 500px;
     height: 500px;
     background-color: #f5f3ff;
-    box-shadow: -8px 8px 16px #888888;
+    box-shadow: 8px 8px 16px #888888;
 
     display: flex;
     flex-wrap: wrap;
