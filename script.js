@@ -82,11 +82,11 @@ function isElementContainClass(element, className)
 function applyColorShading(element) {
     let elementColor = element.style.backgroundColor;
 
-        if (elementColor === '' ||
-        elementColor === 'transparent') 
-        {
-            return;
-        }
+    if (elementColor === '' ||
+    elementColor === 'transparent') 
+    {
+        return;
+    }
 
     let elementColorArr = elementColor.split(',');
 
