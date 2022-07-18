@@ -155,7 +155,7 @@ function addHoverToGrid() {
                 return;
             }
 
-            e.target.style.backgroundColor = `rgb(12, 3, 3)`;        
+            e.target.style.backgroundColor = `rgb(40, 42, 46)`;        
         })
     });
         
