@@ -175,7 +175,11 @@ function generateRandomRGB(alphaValForRGB = 1.0) {
 function addListenerToRainbowBtn() {
     const rainbowModeBtn = document.querySelector('#rainbowMode');
     rainbowModeBtn.addEventListener('click', (e) => {
-        console.log(rainbowModeBtn);
+        if (!isElementContainClass(gridContainer, 'rainbow-mode')) {
+            let classList = ['color-shading', 'color-lighting', 'eraser'];
+            removeClassListFromElement(gridContainer, classList);    
+        }
+        
         gridContainer.classList.toggle('rainbow-mode');
     });
 }
@@ -234,10 +238,22 @@ function removeClassFromElement(element, className) {
     element.classList.toggle(className);
 }
 
-function addListenerToShadingBtn() {
-    const shaddingBtn = document.querySelector('#toggle-shading');
+function removeClassListFromElement(element, classArr)
+{
+    classArr.forEach(className => {
+        removeClassFromElement(element, className);
+    });
+}
 
-    shaddingBtn.onclick = function () {
+function addListenerToShadingBtn() {
+    const shadingBtn = document.querySelector('#toggle-shading');
+
+    shadingBtn.onclick = function () {
+        if (!isElementContainClass(gridContainer, 'color-shading')) {
+            let classList = ['rainbow-mode', 'color-lighting', 'eraser'];
+            removeClassListFromElement(gridContainer, classList);    
+        }
+
         gridContainer.classList.toggle('color-shading');
     }
 }
@@ -246,6 +262,11 @@ function addListenerToLightingBtn() {
     const lightingBtn = document.querySelector('#toggle-lighting')
 
     lightingBtn.onclick = function () {
+        if (!isElementContainClass(gridContainer, 'color-lighting')) {
+            let classList = ['rainbow-mode', 'color-shading', 'eraser'];
+            removeClassListFromElement(gridContainer, classList);    
+        }
+
         gridContainer.classList.toggle('color-lighting')
     }
 }
@@ -254,6 +275,11 @@ function addListenerToEraserBtn() {
     const eraseBtn = document.querySelector('#eraser');
 
     eraseBtn.onclick = function () {
+        if (!isElementContainClass(gridContainer, 'eraser')) {
+            let classList = ['rainbow-mode', 'color-shading', 'color-lighting'];
+            removeClassListFromElement(gridContainer, classList);    
+        }
+
         gridContainer.classList.toggle('eraser');
     }
 }
