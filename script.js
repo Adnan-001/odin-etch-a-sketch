@@ -155,7 +155,7 @@ function addHoverToGrid() {
                 return;
             }
 
-            e.target.style.backgroundColor = `rgb(40, 42, 46)`;        
+            e.target.style.backgroundColor = penColor;        
         })
     });
         
@@ -284,8 +284,17 @@ function addListenerToEraserBtn() {
     }
 }
 
+function addListenerToColorInput() {
+    const colorPicker = document.getElementById('color-picker');
+
+    colorPicker.addEventListener('input', (e)=> {
+        penColor = colorPicker.value;
+    });
+}
+
 const gridContainer = document.querySelector('.grid-container');
 let gridSize = 16;
+let penColor = `rgb(40, 42, 46)`;
 
 addListenerToRainbowBtn();
 addListenerToClearBtn();
@@ -293,6 +302,7 @@ addListenerToGridLinesBtn();
 addListenerToShadingBtn();
 addListenerToLightingBtn();
 addListenerToEraserBtn();
+addListenerToColorInput();
 
 addListenerToUserInputBtn();
 
