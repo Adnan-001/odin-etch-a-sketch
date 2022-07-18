@@ -226,6 +226,14 @@ function addListenerToGridLinesBtn() {
     }
 }
 
+function removeClassFromElement(element, className) {
+    if (!isElementContainClass(element, className)) {
+        return;
+    }
+
+    element.classList.toggle(className);
+}
+
 function addListenerToShadingBtn() {
     const shaddingBtn = document.querySelector('#toggle-shading');
 
