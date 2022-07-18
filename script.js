@@ -125,11 +125,20 @@ function applyColorLighting(element) {
     element.style.backgroundColor = `rgb(${r.toFixed(2)}, ${g.toFixed(2)}, ${b.toFixed(2)})`;
 }
 
+function applyEraser(element) {
+    element.style.backgroundColor = '';
+}
+
 function addHoverToGrid() {
     const allGridElements = document.querySelectorAll('.grid-element');
 
     allGridElements.forEach(element =>{
         element.addEventListener('mouseenter', (e) => {
+
+            if (isElementContainClass(gridContainer, 'eraser')) {
+                applyEraser(e.target)
+                return;
+            }
 
             if (isElementContainClass(gridContainer, 'color-lighting')) {
                 applyColorLighting(e.target)
@@ -233,6 +242,14 @@ function addListenerToLightingBtn() {
     }
 }
 
+function addListenerToEraserBtn() {
+    const eraseBtn = document.querySelector('#eraser');
+
+    eraseBtn.onclick = function () {
+        gridContainer.classList.toggle('eraser');
+    }
+}
+
 const gridContainer = document.querySelector('.grid-container');
 let gridSize = 16;
 
@@ -241,6 +258,7 @@ addListenerToClearBtn();
 addListenerToGridLinesBtn();
 addListenerToShadingBtn();
 addListenerToLightingBtn();
+addListenerToEraserBtn();
 
 addListenerToUserInputBtn();
 
