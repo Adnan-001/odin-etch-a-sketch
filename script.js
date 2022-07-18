@@ -102,11 +102,39 @@ function applyColorShading(element) {
     element.style.backgroundColor = `rgb(${r.toFixed(2)}, ${g.toFixed(2)}, ${b.toFixed(2)})`;
 }
 
+function applyColorLighting(element) {
+    let elementColor = element.style.backgroundColor;
+
+    if (elementColor === '' ||
+    elementColor === 'transparent') 
+    {
+        return;
+    }
+
+    let elementColorArr = elementColor.split(',');
+
+    let r,g,b;
+    r = elementColorArr[0].slice(4);
+    g = elementColorArr[1];
+    b = elementColorArr[2].slice(0, elementColorArr[2].length-1);
+    
+    r = +r + (255-r)*0.1;
+    g = +g + (255-g)*0.1;
+    b = +b + (255-b)*0.1;
+
+    element.style.backgroundColor = `rgb(${r.toFixed(2)}, ${g.toFixed(2)}, ${b.toFixed(2)})`;
+}
+
 function addHoverToGrid() {
     const allGridElements = document.querySelectorAll('.grid-element');
 
     allGridElements.forEach(element =>{
         element.addEventListener('mouseenter', (e) => {
+
+            if (isElementContainClass(gridContainer, 'color-lighting')) {
+                applyColorLighting(e.target)
+                return;
+            }
 
             if (isElementContainClass(gridContainer, 'color-shading')) {
                 applyColorShading(e.target)
@@ -197,6 +225,14 @@ function addListenerToShadingBtn() {
     }
 }
 
+function addListenerToLightingBtn() {
+    const lightingBtn = document.querySelector('#toggle-lighting')
+
+    lightingBtn.onclick = function () {
+        gridContainer.classList.toggle('color-lighting')
+    }
+}
+
 const gridContainer = document.querySelector('.grid-container');
 let gridSize = 16;
 
@@ -204,6 +240,7 @@ addListenerToRainbowBtn();
 addListenerToClearBtn();
 addListenerToGridLinesBtn();
 addListenerToShadingBtn();
+addListenerToLightingBtn();
 
 addListenerToUserInputBtn();
 
