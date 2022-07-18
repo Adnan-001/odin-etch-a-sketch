@@ -48,18 +48,58 @@ function makeGrid(gridSize) {
     addHoverToGrid();
 }
 
-function getAlphaValueForBackgroundColor(element) {
+// function getAlphaValueForBackgroundColor(element) {
+//     let elementColor = element.style.backgroundColor;
+
+//     if (elementColor === '' ||
+//         elementColor === 'transparent') 
+//     {
+//         return 0;
+//     }
+
+//     if (elementColor.charAt(3) !== 'a') {
+//         return 1;
+//     }
+
+//     let elementColorArr = elementColor.split(',');
+//     let alphaVal = elementColorArr[3];
+//     alphaVal = alphaVal.substr(0, alphaVal.length-1);
+
+//     console.log('returning: ', alphaVal);
+
+//     return parseFloat(alphaVal);
+// }
+
+function isElementContainClass(element, className)
+{
+    if (element.classList.contains(className)) 
+    {
+        return true;
+    }
+    return false;
+}
+
+function applyColorShading(element) {
     let elementColor = element.style.backgroundColor;
 
-    if (elementColor.charAt(3) !== 'a') {
-        return 1;
-    }
+        if (elementColor === '' ||
+        elementColor === 'transparent') 
+        {
+            return;
+        }
 
     let elementColorArr = elementColor.split(',');
-    let alphaVal = elementColorArr[3];
-    alphaVal = alphaVal.substr(0, alphaVal.length-1);
 
-    return parseFloat(alphaVal);
+    let r,g,b;
+    r = elementColorArr[0].slice(4);
+    g = elementColorArr[1];
+    b = elementColorArr[2].slice(0, elementColorArr[2].length-1);
+    
+    r = r*0.9;
+    g = g*0.9;
+    b = b*0.9;
+
+    element.style.backgroundColor = `rgb(${r.toFixed(2)}, ${g.toFixed(2)}, ${b.toFixed(2)})`;
 }
 
 function addHoverToGrid() {
@@ -67,16 +107,18 @@ function addHoverToGrid() {
 
     allGridElements.forEach(element =>{
         element.addEventListener('mouseenter', (e) => {
-            if (gridContainer.classList.contains('rainbow-mode')) {
-                e.target.style.backgroundColor = generateRandomRGB(.4);
+
+            if (isElementContainClass(gridContainer, 'color-shading')) {
+                applyColorShading(e.target)
                 return;
             }
 
-            if (gridContainer.classList.contains('color-shading')) {
-                let currentAlphaVal = getAlphaValueForBackgroundColor(e.target);
-                console.log(currentAlphaVal);
+            if (isElementContainClass(gridContainer, 'rainbow-mode')) {
+                e.target.style.backgroundColor = generateRandomRGB();
+                return;
             }
-            e.target.style.backgroundColor = 'rgb(12,3,3)';
+
+            e.target.style.backgroundColor = `rgb(12, 3, 3)`;        
         })
     });
         
