@@ -1,11 +1,13 @@
 
+html{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 body {
-    margin-top: 100px;
     background-color: #ccc0ff;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
 .grid-container {
@@ -16,7 +18,6 @@ body {
 
     display: flex;
     flex-wrap: wrap;
-
     flex-shrink: 0;
 }
 
@@ -28,7 +29,13 @@ body {
     border: 1px #738880 solid;
 }
 
-.main-container {
+.main-content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
     display: flex;
     gap: 64px;
 }
@@ -36,38 +43,79 @@ body {
 .side-panel {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
 
     height: 500px;
-}
-
-#color-picker {
-    height: 50px;
-    width: 80px;
-    padding: 0;
-    border: 0;
-    background-color: transparent;
-
-    display: none;
-}
-
-#color-picker-wrapper {
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-
+    width: 250px;
     flex-shrink: 0;
 }
 
-.colorPicker-container {
+#color-picker {
+    opacity: 0;
+}
+
+#color-picker-wrapper {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px #888888;
+
+    flex-shrink: 0;
+    
     display: flex;
-    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.colorPicker-container, .pen-option-container, 
+.grid-option-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
     justify-content: center;
     align-items: center;
 }
 
-.style-selected-btn {
-    background-color: tan;
+
+.side-panel button {
+    width: 200px;
+    height: 36px;
+
+    font-size: 16px;
+    color: #1B2D3B;
+    font-weight: 700;
+    background-color: #A38DFF;
+    border: 2px #1B2D3B solid;
+    border-radius: 12px;
+    box-shadow: 2px 2px 4px #888888;
+    ;
+}
+
+.side-panel .label {
+    font-size: 24px;
+    font-weight: 900;
+    color: #1B2D3B;
+}
+
+.side-panel .style-selected-btn {
+    background-color: #7A5AFF;
+    font-weight: 900;
+}
+
+.title {
+    height: 100px;
+    font-size: 64px;
+    font-style: italic;
+    font-weight: 900;
+    color: #1B2D3B;
+
+    text-align: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+    margin-bottom: 24px;
 }
