@@ -201,7 +201,8 @@ function addListenerToUserInputBtn() {
         gridSize = gridSize.trim();
         if (gridSize === '' 
             || isNaN(gridSize) 
-            || parseInt(gridSize) > 100)
+            || parseInt(gridSize) > 100
+            || parseInt(gridSize) < 1)
         {
             return;
         }
