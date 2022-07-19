@@ -48,6 +48,16 @@ body {
     padding: 0;
     border: 0;
     background-color: transparent;
+
+    display: none;
+}
+
+#color-picker-wrapper {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+
+    flex-shrink: 0;
 }
 
 .colorPicker-container {

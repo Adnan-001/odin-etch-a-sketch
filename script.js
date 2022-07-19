@@ -311,10 +311,19 @@ function removeHighlightingToPenBtns() {
 
 function addListenerToColorInput() {
     const colorPicker = document.getElementById('color-picker');
+    const colorPickerWrapper = document.getElementById('color-picker-wrapper');
 
     colorPicker.addEventListener('input', (e)=> {
         penColor = colorPicker.value;
+        colorPickerWrapper.style.backgroundColor = penColor;
     });
+
+    colorPickerWrapper.onclick = function () {
+        colorPicker.click();
+    }
+
+    colorPickerWrapper.style.backgroundColor = penColor;
+
 }
 
 const gridContainer = document.querySelector('.grid-container');
