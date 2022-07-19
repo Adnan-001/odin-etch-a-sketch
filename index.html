@@ -4,43 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-A-Sketch</title>
+    <title>Etch-a-Sketch</title>
 
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <div class="content">
-        <div class="side-panel">
 
-            <div class="colorPicker-container">
-                <span id="color-picker-wrapper">
-                    <input type="color" id="color-picker" name="colorPicker" value="#282a2e">
-                </span>
 
-                <div class="label">
-                    Pick Pen Color
-                </div>
-            </div>
-
-            <div class="pen-option-container">
-                <button class="pen" id="rainbowMode">Toggle Rainbow Mode</button>
-                <button class="pen" id="toggle-shading">Toggle Shading</button>
-                <button class="pen"  id="toggle-lighting">Toggle Lighting</button>    
-                <button class="pen"  id="eraser">Eraser</button>
-    
-            </div>
-
-            <div class="grid-option-container">
-                <button id="toggle-gridLines">Toggle Grid Lines</button>
-                <button id="gridSize">Change the Grid Size?</button>
-                <button id="clear-grid">Clear</button>
-            </div>
-           
-        </div>
-    
-        <div class="grid-container"></div>
+    <div class="title">
+        Etch-a-Sketch
     </div>
+
+    <div class="main-content-container">
+        <div class="content">
+            <div class="side-panel">
+                <div class="colorPicker-container">
+                    <span id="color-picker-wrapper">
+                        <input type="color" id="color-picker" name="colorPicker" value="#282a2e">
+                    </span>
+    
+                    <div class="label">
+                        Pick Pen Color
+                    </div>
+                </div>
+    
+                <div class="pen-option-container">
+                    <button class="pen" id="rainbowMode">Toggle Rainbow Mode</button>
+                    <button class="pen" id="toggle-shading">Toggle Shading</button>
+                    <button class="pen"  id="toggle-lighting">Toggle Lighting</button>    
+                    <button class="pen"  id="eraser">ToggleEraser</button>
+        
+                </div>
+    
+                <div class="grid-option-container">
+                    <button id="gridSize">Change the Grid Size</button>
+                    <button id="toggle-gridLines">Toggle Grid Lines</button>
+                    <button id="clear-grid">Clear Grid</button>
+                </div>
+               
+            </div>
+        
+            <div class="grid-container"></div>
+        </div>                
+    </div>
+
 
 </body>
 </html>
