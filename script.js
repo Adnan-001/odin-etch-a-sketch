@@ -179,9 +179,14 @@ function addListenerToRainbowBtn() {
             let classList = ['color-shading', 'color-lighting', 'eraser'];
             removeClassListFromElement(gridContainer, classList);    
         }
-        
+        if (!isElementContainClass(rainbowModeBtn, 'style-selected-btn')) {
+            removeHighlightingToPenBtns();
+        }
+    
+        rainbowModeBtn.classList.toggle('style-selected-btn');
         gridContainer.classList.toggle('rainbow-mode');
     });
+    
 }
 
 function addListenerToUserInputBtn() {
@@ -234,7 +239,6 @@ function removeClassFromElement(element, className) {
     if (!isElementContainClass(element, className)) {
         return;
     }
-
     element.classList.toggle(className);
 }
 
@@ -253,7 +257,11 @@ function addListenerToShadingBtn() {
             let classList = ['rainbow-mode', 'color-lighting', 'eraser'];
             removeClassListFromElement(gridContainer, classList);    
         }
+        if (!isElementContainClass(shadingBtn, 'style-selected-btn')) {
+            removeHighlightingToPenBtns();
+        }
 
+        shadingBtn.classList.toggle('style-selected-btn');
         gridContainer.classList.toggle('color-shading');
     }
 }
@@ -266,7 +274,11 @@ function addListenerToLightingBtn() {
             let classList = ['rainbow-mode', 'color-shading', 'eraser'];
             removeClassListFromElement(gridContainer, classList);    
         }
+        if (!isElementContainClass(lightingBtn, 'style-selected-btn')) {
+            removeHighlightingToPenBtns();
+        }
 
+        lightingBtn.classList.toggle('style-selected-btn');
         gridContainer.classList.toggle('color-lighting')
     }
 }
@@ -280,8 +292,21 @@ function addListenerToEraserBtn() {
             removeClassListFromElement(gridContainer, classList);    
         }
 
+        if (!isElementContainClass(eraseBtn, 'style-selected-btn')) {
+            removeHighlightingToPenBtns();
+        }
+
+        eraseBtn.classList.toggle('style-selected-btn');
         gridContainer.classList.toggle('eraser');
     }
+}
+
+function removeHighlightingToPenBtns() {
+    const btnList = document.querySelectorAll('.side-panel .pen');
+
+    btnList.forEach(btn => {
+        removeClassFromElement(btn, 'style-selected-btn');
+    });
 }
 
 function addListenerToColorInput() {
