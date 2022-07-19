@@ -4,10 +4,6 @@ html{
 }
 body {
     background-color: #ccc0ff;
-    height: 100vh;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 .grid-container {
@@ -113,9 +109,14 @@ body {
     color: #1B2D3B;
 
     text-align: center;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-
     margin-bottom: 24px;
+}
+
+.grid-container:hover {
+    cursor: crosshair;
+}
+
+.side-panel button:hover 
+{
+    cursor: grab;
 }
