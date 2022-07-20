@@ -19,6 +19,7 @@ body {
 
 .grid-element {
     box-sizing: border-box;
+    user-select: none;
 }
 
 .grid-element-border {
@@ -98,6 +99,7 @@ body {
 
 .side-panel .style-selected-btn {
     background-color: #7A5AFF;
+    border-color: tomato;
     font-weight: 900;
 }
 

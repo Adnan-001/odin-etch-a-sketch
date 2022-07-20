@@ -45,30 +45,8 @@ function makeGrid(gridSize) {
         addElementToGrid(gridContainer, gridElementSize);        
     }
 
-    addHoverToGrid();
+    addHoverEffectToGrid();
 }
-
-// function getAlphaValueForBackgroundColor(element) {
-//     let elementColor = element.style.backgroundColor;
-
-//     if (elementColor === '' ||
-//         elementColor === 'transparent') 
-//     {
-//         return 0;
-//     }
-
-//     if (elementColor.charAt(3) !== 'a') {
-//         return 1;
-//     }
-
-//     let elementColorArr = elementColor.split(',');
-//     let alphaVal = elementColorArr[3];
-//     alphaVal = alphaVal.substr(0, alphaVal.length-1);
-
-//     console.log('returning: ', alphaVal);
-
-//     return parseFloat(alphaVal);
-// }
 
 function isElementContainClass(element, className)
 {
@@ -129,36 +107,56 @@ function applyEraser(element) {
     element.style.backgroundColor = '';
 }
 
-function addHoverToGrid() {
+function performPenOperation(gridElement) 
+{
+    if (isElementContainClass(gridContainer, 'eraser')) {
+        applyEraser(gridElement)
+        return;
+    }
+
+    if (isElementContainClass(gridContainer, 'color-lighting')) {
+        applyColorLighting(gridElement)
+        return;
+    }
+
+    if (isElementContainClass(gridContainer, 'color-shading')) {
+        applyColorShading(gridElement)
+        return;
+    }
+
+    if (isElementContainClass(gridContainer, 'rainbow-mode')) {
+        gridElement.style.backgroundColor = generateRandomRGB();
+        return;
+    }
+
+    gridElement.style.backgroundColor = penColor;     
+}
+
+function addHoverEffectToGrid() {
     const allGridElements = document.querySelectorAll('.grid-element');
+    let isDrag = false;
+
+    gridContainer.onmousedown = function() {
+        isDrag = true;
+    }
+    window.onmouseup = function () {
+        isDrag = false;
+    }
 
     allGridElements.forEach(element =>{
+        // if user wants drag effect 
         element.addEventListener('mouseenter', (e) => {
-
-            if (isElementContainClass(gridContainer, 'eraser')) {
-                applyEraser(e.target)
+            if (!isDrag) {
                 return;
             }
+            performPenOperation(e.target);
+        });
 
-            if (isElementContainClass(gridContainer, 'color-lighting')) {
-                applyColorLighting(e.target)
-                return;
-            }
-
-            if (isElementContainClass(gridContainer, 'color-shading')) {
-                applyColorShading(e.target)
-                return;
-            }
-
-            if (isElementContainClass(gridContainer, 'rainbow-mode')) {
-                e.target.style.backgroundColor = generateRandomRGB();
-                return;
-            }
-
-            e.target.style.backgroundColor = penColor;        
-        })
+        // if user only clicks on a single grid-element
+        element.addEventListener('mousedown', (e) => {
+            performPenOperation(e.target);
+        });
     });
-        
 }
 
 function generateRandomRGB(alphaValForRGB = 1.0) {
@@ -231,8 +229,9 @@ function addListenerToGridLinesBtn() {
         const allGridElements = document.querySelectorAll('.grid-element');
 
         allGridElements.forEach(element => {
-            element.classList.toggle('grid-element-border');
+            element.classList.toggle('grid-element-border');            
         });
+        toggleGridLineBtn.classList.toggle('style-selected-btn');
     }
 }
 
